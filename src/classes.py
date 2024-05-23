@@ -51,3 +51,13 @@ class Operation:
 
     def __gt__(self, other):
         return self.date > other.date
+
+    def __str__(self):
+        from_ = self.mask_payment_info(self.from_)
+        delimiter = " -> " if from_ else ""
+        return (
+            f"{self.convert_date()} {self.description}\n"
+            f"{from_}{delimiter}{self.mask_payment_info(self.to)}\n"
+            f"{self.amount} {self.currency_name}"
+        )
+

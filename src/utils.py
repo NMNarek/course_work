@@ -36,7 +36,7 @@ def get_operation_instances(operations: list[dict]) -> list[Operation]:
     for operation in operations:
         operation_instance = Operation(
             state=operation["state"],
-            from_=operation.get("from"),
+            from_=operation.get("from", ""),
             date=operation["date"],
             amount=operation["operationAmount"]["amount"],
             currency_name=operation["operationAmount"]["currency"]["name"],
