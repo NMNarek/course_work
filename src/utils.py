@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from src.classes import Operation
+
 
 def load_operations(path: Path) -> list[dict]:
     """
@@ -22,3 +24,24 @@ def get_executed_operations(operations: list[dict]) -> list[dict]:
         operation for operation in operations
         if operation.get("state") == "EXECUTED" and operation
     ]
+
+
+def get_operation_instances(operations: list[dict]) -> list[Operation]:
+    """
+    раскладываем все операции в экземпляры классов
+    :param operations:
+    :return:
+    """
+    operations_instances = []
+    for operation in operations:
+        operation_instance = Operation(
+            state=operation["state"],
+            from_=operation.get("from"),
+            date=operation["date"],
+            amount=operation["operationAmount"]["amount"],
+            currency_name=operation["operationAmount"]["currency"]["name"],
+            description=operation["description"],
+            to=operation["to"]
+        )
+        operations_instances.append(operation_instance)
+    return operations_instances
