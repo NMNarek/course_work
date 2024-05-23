@@ -45,3 +45,15 @@ def get_operation_instances(operations: list[dict]) -> list[Operation]:
         )
         operations_instances.append(operation_instance)
     return operations_instances
+
+
+def sort_operations(operations: list[Operation]) -> list[Operation]:
+    """
+    сортируем наши операции методами сравнения
+    :param operations:
+    :return:
+    """
+    return sorted(operations, reverse=True)
+
+
+
